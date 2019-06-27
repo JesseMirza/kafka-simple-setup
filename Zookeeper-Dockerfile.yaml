@@ -1,0 +1,7 @@
+FROM openjdk:8u212
+EXPOSE 2128
+COPY ./kafka-dist/ /app
+COPY ./configs/ /configs
+COPY ./certs/certificates /certs
+COPY ./example-commands.txt /app
+CMD ["/app/bin/zookeeper-server-start.sh", "/configs/zookeeper.properties"]

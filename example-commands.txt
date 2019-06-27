@@ -1,0 +1,26 @@
+
+To create topic:
+/app/bin/kafka-topics.sh --create --bootstrap-server kafka1:9093,kafka2:9095 --replication-factor 1 --partitions 1 --topic test --command-config /configs/admin-producer.properties
+
+To list topics:
+/app/bin/kafka-topics.sh --list --bootstrap-server kafka1:9093,kafka2:9095 --command-config /configs/admin-producer.properties
+
+To allow `client` user to read topic `test` (with consumer group of `testreaders`): and write to this topic:
+
+/app/bin/kafka-acls.sh --authorizer-properties zookeeper.connect=localhost:2181 --add --allow-principal User:CN=client,OU=KafkaTeam,O=KafkaNet,L=Amsterdam,ST=NH,C=NL --operation READ --topic 'test' --group 'testreaders' 
+
+To allow `client` user to write to topic `test`:
+
+/app/bin/kafka-acls.sh --authorizer-properties zookeeper.connect=localhost:2181 --add --allow-principal User:CN=client,OU=KafkaTeam,O=KafkaNet,L=Amsterdam,ST=NH,C=NL --operation WRITE --topic 'test'
+
+To start producer:
+/app/bin/kafka-console-producer.sh --broker-list kafka1:9093,kafka2:9095 --topic test --producer.config /configs/client-producer.properties
+
+To start consumer:
+/app/bin/kafka-console-consumer.sh --bootstrap-server kafka1:9093,kafka2:9095 --topic test --consumer.config /configs/clint-consumer.properties
+
+
+
+
+
+
