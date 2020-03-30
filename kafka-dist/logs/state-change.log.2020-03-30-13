@@ -1,0 +1,8 @@
+[2020-03-30 13:34:17,526] TRACE [Controller id=1 epoch=3] Received response {error_code=0} for request UPDATE_METADATA with correlation id 0 sent to broker kafka1:9093 (id: 1 rack: null) (state.change.logger)
+[2020-03-30 13:42:46,075] TRACE [Controller id=1 epoch=1] Received response {error_code=0} for request UPDATE_METADATA with correlation id 0 sent to broker kafka1:9093 (id: 1 rack: null) (state.change.logger)
+[2020-03-30 13:48:41,598] TRACE [Controller id=1 epoch=2] Received response {error_code=0} for request UPDATE_METADATA with correlation id 0 sent to broker kafka2:9095 (id: 2 rack: null) (state.change.logger)
+[2020-03-30 13:48:41,782] TRACE [Controller id=1 epoch=2] Received response {error_code=0} for request UPDATE_METADATA with correlation id 0 sent to broker kafka1:9093 (id: 1 rack: null) (state.change.logger)
+[2020-03-30 13:53:10,002] TRACE [Controller id=2 epoch=4] Received response {error_code=0} for request UPDATE_METADATA with correlation id 0 sent to broker kafka1:9093 (id: 1 rack: null) (state.change.logger)
+[2020-03-30 13:53:10,268] TRACE [Controller id=2 epoch=4] Received response {error_code=0} for request UPDATE_METADATA with correlation id 0 sent to broker kafka2:9095 (id: 2 rack: null) (state.change.logger)
+[2020-03-30 13:55:40,067] TRACE [Controller id=1 epoch=6] Received response {error_code=0} for request UPDATE_METADATA with correlation id 0 sent to broker kafka2:9095 (id: 2 rack: null) (state.change.logger)
+[2020-03-30 13:55:40,101] TRACE [Controller id=1 epoch=6] Received response {error_code=0} for request UPDATE_METADATA with correlation id 0 sent to broker kafka1:9093 (id: 1 rack: null) (state.change.logger)

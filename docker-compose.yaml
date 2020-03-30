@@ -23,7 +23,12 @@ services:
     networks:
       kafkanet:
         aliases:
-          - kafka1.kafkanet       
+          - kafka1.kafkanet
+    volumes:
+       - "./kafka-dist:/app"
+       - "./configs:/configs"
+       - "./certs/certificates:/certs"
+       - "./example-commands.txt:/app/example-commands.txt"      
     command: ["/app/bin/kafka-server-start.sh", "/configs/kafka-server-1.properties"]
   kafka-2:
     depends_on:
@@ -36,5 +41,50 @@ services:
     networks:
       kafkanet:
         aliases:
-          - kafka2.kafkanet        
+          - kafka2.kafkanet
+    volumes:
+       - "./kafka-dist:/app"
+       - "./configs:/configs"
+       - "./certs/certificates:/certs"
+       - "./example-commands.txt:/app/example-commands.txt"       
     command: ["/app/bin/kafka-server-start.sh", "/configs/kafka-server-2.properties"]
+  kafka-3:
+    depends_on:
+      - "zookeeper"
+    image: "kf"
+    container_name: kafka3
+    ports:
+      - "9096:9096"
+      - "9097:9097"
+    networks:
+      kafkanet:
+        aliases:
+          - kafka3.kafkanet
+    volumes:
+       - "./kafka-dist:/app"
+       - "./configs:/configs"
+       - "./certs/certificates:/certs"
+       - "./example-commands.txt:/app/example-commands.txt"       
+    command: ["/app/bin/kafka-server-start.sh", "/configs/kafka-server-3.properties"]
+  kafka-4:
+    depends_on:
+      - "zookeeper"
+    image: "kf"
+    container_name: kafka4
+    ports:
+      - "9098:9098"
+      - "9099:9099"
+    networks:
+      kafkanet:
+        aliases:
+          - kafka4.kafkanet
+    volumes:
+       - "./kafka-dist:/app"
+       - "./configs:/configs"
+       - "./certs/certificates:/certs"
+       - "./example-commands.txt:/app/example-commands.txt"       
+    command: ["/app/bin/kafka-server-start.sh", "/configs/kafka-server-4.properties"]
+volumes:
+  kafka-dist:
+  configs:
+  certs:
