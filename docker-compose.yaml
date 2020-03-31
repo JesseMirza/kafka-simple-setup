@@ -1,22 +1,35 @@
-version: '3'
+version: "3.3"
+
 networks:
   kafkanet:
-    driver: bridge
+    driver: overlay
+    attachable: true
+
+volumes:
+  kafka-dist: {}
+  configs: {}
+  certs: {}
+
 services:
   zookeeper:
     image: "zk"
-    container_name: zookeeper
     ports:
       - "2181:2181"
     networks:
       kafkanet:
         aliases:
           - zookeeper.kafkanet
+    deploy:
+      mode: global
+      resources:
+        limits:
+          memory: 128M
+        reservations:
+          memory: 64M
   kafka-1:
     depends_on:
       - "zookeeper"
     image: "kf"
-    container_name: kafka1
     ports:
       - "9092:9092"
       - "9093:9093" 
@@ -30,11 +43,17 @@ services:
        - "./certs/certificates:/certs"
        - "./example-commands.txt:/app/example-commands.txt"      
     command: ["/app/bin/kafka-server-start.sh", "/configs/kafka-server-1.properties"]
+    deploy:
+      mode: global
+      resources:
+        limits:
+          memory: 128M
+        reservations:
+          memory: 64M
   kafka-2:
     depends_on:
       - "zookeeper"
     image: "kf"
-    container_name: kafka2
     ports:
       - "9094:9094"
       - "9095:9095"
@@ -48,11 +67,17 @@ services:
        - "./certs/certificates:/certs"
        - "./example-commands.txt:/app/example-commands.txt"       
     command: ["/app/bin/kafka-server-start.sh", "/configs/kafka-server-2.properties"]
+    deploy:
+      mode: global
+      resources:
+        limits:
+          memory: 128M
+        reservations:
+          memory: 64M
   kafka-3:
     depends_on:
       - "zookeeper"
     image: "kf"
-    container_name: kafka3
     ports:
       - "9096:9096"
       - "9097:9097"
@@ -66,11 +91,17 @@ services:
        - "./certs/certificates:/certs"
        - "./example-commands.txt:/app/example-commands.txt"       
     command: ["/app/bin/kafka-server-start.sh", "/configs/kafka-server-3.properties"]
+    deploy:
+      mode: global
+      resources:
+        limits:
+          memory: 128M
+        reservations:
+          memory: 64M
   kafka-4:
     depends_on:
       - "zookeeper"
     image: "kf"
-    container_name: kafka4
     ports:
       - "9098:9098"
       - "9099:9099"
@@ -84,7 +115,10 @@ services:
        - "./certs/certificates:/certs"
        - "./example-commands.txt:/app/example-commands.txt"       
     command: ["/app/bin/kafka-server-start.sh", "/configs/kafka-server-4.properties"]
-volumes:
-  kafka-dist:
-  configs:
-  certs:
+    deploy:
+      mode: global
+      resources:
+        limits:
+          memory: 128M
+        reservations:
+          memory: 64M
